@@ -4,8 +4,10 @@
 #include <time.h>
 #include "rules.h"
 #include "display.h"
+#include "gol.h"
 
 State*** pixels;
+#define ATM gameOfLife
 void init();
 void click(const int, const int, int);
 
@@ -40,16 +42,20 @@ int main() {
             SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
             SDL_RenderClear(renderer);
 
-            applyRuleset(&sand, &pixels);
+            applyRuleset(&ATM, &pixels);
 
             for (int i = 0; i < WIDTH; i++) {
                 for (int j = 0; j < HEIGHT; j++) {
                     State* s = pixels[i][j];
+
                     SDL_SetRenderDrawColor(renderer, s->r, s->g, s->b, s->a);
 
-					//SDL_RenderDrawPoint(renderer, i, j);
-                    SDL_Rect rect = {i*2, j*2, 2, 2};
-                    SDL_RenderFillRect(renderer, &rect);
+                    if(SANDSIZE == 1)
+                        SDL_RenderDrawPoint(renderer, i, j);
+                    else {
+                        SDL_Rect rect = {i* SANDSIZE, j* SANDSIZE, SANDSIZE, SANDSIZE };
+                        SDL_RenderFillRect(renderer, &rect);
+                    }
                 }
             }
 
@@ -71,20 +77,19 @@ void init() {
     srand(time(NULL));
 
 	initSDL();
-    pixels = randomFlash(&sand);
+    pixels = randomFlash(&ATM);
 
     printf("Enter to start...");
-	getchar();
 }
 
 void click(const int x, const int y, int s) {
     int i = x / SANDSIZE;
     int j = y / SANDSIZE;
     if (isValidPoint(i, j)) {
-        if(pixels[i][j] == &sand.stateSet[0])
-            pixels[i][j] = &sand.stateSet[1];
+        if(pixels[i][j] == &ATM.stateSet[0])
+            pixels[i][j] = &ATM.stateSet[1];
         else
-			pixels[i][j] = &sand.stateSet[0];
+			pixels[i][j] = &ATM.stateSet[0];
     }
 
     for (int k = 0; k < s - 1; k++) {
