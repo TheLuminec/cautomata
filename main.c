@@ -22,6 +22,10 @@ int main() {
         delta = a - b;
 
         if (delta > 1000 / FPS) {
+            //system("cls");
+            printf("\rFPS: %.1lf", 1000/delta);
+
+
             while (SDL_PollEvent(&event)) {
                 if (event.type == SDL_QUIT) {
                     running = 0;
@@ -78,8 +82,6 @@ void init() {
 
 	initSDL();
     pixels = randomFlash(&ATM);
-
-    printf("Enter to start...");
 }
 
 void click(const int x, const int y, int s) {

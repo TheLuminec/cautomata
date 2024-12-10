@@ -4,9 +4,9 @@
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 640
-#define WIDTH 320
-#define HEIGHT 320
-#define SANDSIZE 2
+#define WIDTH 640
+#define HEIGHT 640
+#define SANDSIZE SCREEN_WIDTH/WIDTH
 #define FPS 24
 
 #endif
