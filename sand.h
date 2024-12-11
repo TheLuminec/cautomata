@@ -5,7 +5,7 @@
 * Sand currently justs falls since I haven't implemented left/right
 */
 
-//Sand Implementation
+//Sand States
 const State sandState[] = {
 	{0,0,0,255},
 	{255,255,255,255}
@@ -41,12 +41,14 @@ bool sr6(int x, int y, const State*** flash) {
 const Rule sandRules[] = {
 	{sr1, &sandState[1], &sandState[0]},
 	{sr2, &sandState[0], &sandState[1]},
+
 	{sr3, &sandState[1], &sandState[0]},
 	{sr4, &sandState[0], &sandState[1]},
 	{sr5, &sandState[1], &sandState[0]},
 	{sr6, &sandState[0], &sandState[1]}
 };
 
+// Sand Automaton
 const Automaton sand = {
 	&sandRules,
 	2,

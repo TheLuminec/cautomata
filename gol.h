@@ -4,7 +4,7 @@
 //Game of life implmentation
 
 const State gameOfLifeState[] = {
-	{0,0,0,255},
+	{20,20,20,255},
 	{255,255,255,255}
 };
 

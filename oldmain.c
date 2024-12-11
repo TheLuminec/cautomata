@@ -5,9 +5,9 @@
 
 #define SCREEN_WIDTH 640
 #define SCREEN_HEIGHT 640
-#define SANDSIZE 3
-#define WIDTH (SCREEN_WIDTH / SANDSIZE)
-#define HEIGHT (SCREEN_HEIGHT / SANDSIZE)
+#define PIXELSIZE 3
+#define WIDTH (SCREEN_WIDTH / PIXELSIZE)
+#define HEIGHT (SCREEN_HEIGHT / PIXELSIZE)
 #define GAP 0.0f
 #define BRUSHSIZE 10
 
@@ -84,8 +84,8 @@ void loop() {
 }
 
 void click(const int x, const int y, int s) {
-	int i = x / SANDSIZE;
-	int j = y / SANDSIZE;
+	int i = x / PIXELSIZE;
+	int j = y / PIXELSIZE;
 	if (boundCheck(i, j)) {
 		sand[i][j] = !sand[i][j];
 	}
@@ -192,9 +192,9 @@ void draw() {
     for (int i = 0; i < WIDTH; i++) {
         for (int j = 0; j < HEIGHT; j++) {
             if (sand[i][j]) {
-                float x = i * SANDSIZE + GAP;
-                float y = j * SANDSIZE + GAP;
-                SDL_FRect rect = { x, y, SANDSIZE - 2 * GAP, SANDSIZE - 2 * GAP };
+                float x = i * PIXELSIZE + GAP;
+                float y = j * PIXELSIZE + GAP;
+                SDL_FRect rect = { x, y, PIXELSIZE - 2 * GAP, PIXELSIZE - 2 * GAP };
                 SDL_RenderFillRectF(renderer, &rect);
             }
         }

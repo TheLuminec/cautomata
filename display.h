@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include "rules.h"
 
 SDL_Event event;
 SDL_Window* window;
@@ -49,4 +50,23 @@ void cleanupSDL() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
     SDL_Quit();
+}
+
+void schedulePixelDraw(int i, int j, const State* s) {
+    SDL_SetRenderDrawColor(renderer, s->r, s->g, s->b, s->a);
+
+    if (PIXELED) {
+        SDL_RenderDrawPoint(renderer, i, j);
+    }
+    else {
+        SDL_FRect rect = { i * PIXELSIZE_X, j * PIXELSIZE_Y, PIXELSIZE_X, PIXELSIZE_Y };
+        SDL_RenderFillRectF(renderer, &rect);
+    }
+}
+
+void draw(const Automaton ATM) {
+    SDL_RenderPresent(renderer);
+
+    SDL_SetRenderDrawColor(renderer, ATM.stateSet[0].r, ATM.stateSet[0].g, ATM.stateSet[0].b, ATM.stateSet[0].a);
+    SDL_RenderClear(renderer);
 }

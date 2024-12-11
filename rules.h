@@ -44,8 +44,19 @@ const State* useRules(const int x, const int y, const Automaton* rs, const State
 void applyRuleset(const Automaton* rs, State**** dataPtr) {
 	// Allocate flash
 	State*** flash = malloc(WIDTH * sizeof(State**));
+	if (!flash) {
+		printf("Error: Could not allocate flash memory.\n");
+		free(flash);
+		return;
+	}
+
 	for (int i = 0; i < WIDTH; i++) {
 		flash[i] = malloc(HEIGHT * sizeof(State*));
+		if (!flash[i]) {
+			printf("Error: Could not allocate flash memory.\n");
+			free(flash[i]);
+			return;
+		}
 	}
 
 	// Apply rules
