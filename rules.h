@@ -26,9 +26,21 @@ typedef struct automaton {
 	uint16_t stateSize;
 } Automaton;
 
-bool isValidPoint(const int x, const int y) {
+const bool isValidPoint(const int x, const int y) {
 
 	return (x < WIDTH && x >= 0 && y < HEIGHT && y >= 0);
+}
+
+const int countNeighbors(const int x, const int y, const State*** flash, const State* targetState) {
+	int count = 0;
+	for (int i = -1; i <= 1; i++) {
+		for (int j = -1; j <= 1; j++) {
+			if (i == 0 && j == 0) continue;
+			if (isValidPoint(x + i, y + j) && flash[x + i][y + j] == targetState)
+				count++;
+		}
+	}
+	return count;
 }
 
 const State* useRules(const int x, const int y, const Automaton* rs, const State*** data) {
@@ -75,7 +87,6 @@ void applyRuleset(const Automaton* rs, State**** dataPtr) {
 	// Update the caller's pointer
 	*dataPtr = flash;
 }
-
 
 State*** randomFlash(const Automaton* rs) {
 	State*** flash = malloc(WIDTH * sizeof(State**));

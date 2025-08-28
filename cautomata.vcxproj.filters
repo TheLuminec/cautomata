@@ -38,5 +38,11 @@
     <ClInclude Include="gol.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="wireworld.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="briansbrain.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

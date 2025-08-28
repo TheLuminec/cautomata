@@ -7,8 +7,8 @@
 
 //Sand States
 const State sandState[] = {
-	{0,0,0,255},
-	{255,255,255,255}
+	{0,0,0,255},		//No sand
+	{255,255,255,255}	//Sand
 };
 
 //0 to 0 done, no sand

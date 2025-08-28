@@ -4,11 +4,13 @@
 #include <time.h>
 #include "rules.h"
 #include "display.h"
-#include "sand.h"
-#include "gol.h"
+//#include "sand.h"
+//#include "gol.h"
+//#include "wireworld.h"
+#include "briansbrain.h"
 
 //selected automata
-#define ATM gameOfLife
+#define ATM briansBrain
 
 //pixels that hold automata data
 State*** pixels;

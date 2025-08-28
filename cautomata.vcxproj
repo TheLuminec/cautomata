@@ -140,11 +140,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="briansbrain.h" />
     <ClInclude Include="display.h" />
     <ClInclude Include="gol.h" />
     <ClInclude Include="rules.h" />
     <ClInclude Include="sand.h" />
     <ClInclude Include="system.h" />
+    <ClInclude Include="wireworld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
